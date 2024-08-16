@@ -1,5 +1,5 @@
 ---
-title: "alex-nguyen-vn.github.io"
+title: "Clumpsy Analytics"
 listing:
   contents: posts
   sort: "date desc"
