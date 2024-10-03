@@ -1,0 +1,33 @@
+---
+format: html
+---
+
+<style>
+  body {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%), url("assets/img/black-white-landscape-with-fog.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  padding-top: 0px;
+}
+</style>
+
+
+```{=html}
+<body id="page-top">
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+            <div class="d-flex justify-content-center">
+                <div class="text-center">
+                    <h1 class="mx-auto my-0 text-uppercase">Welcome</h1>
+                    <h2 class="text-white-50 mx-auto mt-2 mb-5">This is my personal journey into the world of data analysis. Let's enjoy the journey together.</h2>
+                    <a class="btn btn-primary" href="posts/index.html">Dive in!</a>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+```
+
+

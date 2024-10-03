@@ -1,0 +1,54 @@
+---
+title: "Thanh Cuong Nguyen (Alex)"
+image: profile.jpg
+about:
+  template: trestles
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/Alex-Nguyen-VN
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/nguyen-thanh-cuong-20849552/
+format:
+  html:
+    css: css/styles.css
+---
+<style>
+  body {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%), url("assets/img/black-white-landscape-with-fog.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  padding-top: 0px;
+}
+</style>
+
+
+```{=html}
+<!-- About Content -->
+<div class="about-me">
+  <h2>About Me</h2>
+  <p>
+    I am a dynamic and results-oriented professional pursuing a career in Business Analytics. With a strong foundation in data analysis, project management, and strategic planning gained from diverse roles, I am eager to leverage my skills to drive business decisions and strategies.
+  </p>
+
+  <!-- Education Section -->
+  <h3>Education</h3>
+  <p><strong>Monash University</strong> | Melbourne, Australia<br>
+  Master of Business Analytics | Expected 2026</p>
+
+  <p><strong>National Economic University</strong> | Hanoi, Viet Nam<br>
+  Bachelor of Business Administration | 2010-2014</p>
+
+  <!-- Experience Section -->
+  <h3>Experience</h3>
+  <p><strong>Data Analyst</strong> | Trade Remedies Authority of Viet Nam | Jan 2019 - Jan 2023</p>
+
+  <!-- Achievements Section -->
+  <h3>Achievements</h3>
+  <p>Kellogg-Morgan Sustainable Financing Contest 2024 | Finalist</p>
+  </div>
+</div>
+```

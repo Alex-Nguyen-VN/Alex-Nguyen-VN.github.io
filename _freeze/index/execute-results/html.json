@@ -1,0 +1,15 @@
+{
+  "hash": "b0048e612085edc0a9f9639e31ce2cbf",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nengine: knitr\nformat: \n  html:\n    page-layout: custom\n    css: css/homepage.css\nnavbar: false  \n---\n\n```{=html}\n<body id=\"page-top\">\n    <header class=\"masthead\">\n        <div class=\"container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center\">\n            <div class=\"d-flex justify-content-center\">\n                <div class=\"text-center\">\n                    <h1 class=\"mx-auto my-0 text-uppercase\">Welcome</h1>\n                    <h2 class=\"text-white-50 mx-auto mt-2 mb-5\">This is my personal journey into the world of data analysis. Let's enjoy the journey together.</h2>\n                    <a class=\"btn btn-primary\" href=\"posts/index.html\">Dive in!</a>\n                </div>\n            </div>\n        </div>\n    </header>\n</body>\n```\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

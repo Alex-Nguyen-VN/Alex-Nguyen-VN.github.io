@@ -1,0 +1,36 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  page-navigation: true
+  title: "Alex Nguyen"
+  site-url: "https://alexnguyen.github.io/"
+  open-graph: true
+
+lang: en
+
+format:
+  html:
+    link-external-icon: true
+    link-external-newwindow: true
+    smooth-scroll: true
+    citations-hover: true
+    footnotes-hover: true
+    toc: true
+    code-link: true
+    googlefonts:
+      - Varela+Round
+      - Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i
+    css: /css/styles.css
+    include-in-header:
+      - includes/header.html
+      - text: |
+          <script type="text/javascript" src="/js/scripts.js"></script>
+    include-after-body: includes/footer.html
+
+editor: visual
+execute:
+  freeze: true
+
+

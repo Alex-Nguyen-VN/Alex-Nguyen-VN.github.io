@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Alex Nguyen</title>
+<link>https://alexnguyen.github.io/</link>
+<atom:link href="https://alexnguyen.github.io/index.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.4.550</generator>
+<lastBuildDate>Sun, 29 Sep 2024 14:00:00 GMT</lastBuildDate>
+<item>
+  <title>The Duck Curve and the invisible player in the energy market</title>
+  <dc:creator>Thanh Cuong Nguyen</dc:creator>
+  <link>https://alexnguyen.github.io/posts/welcome/</link>
+  <description><![CDATA[ <blockquote class="blockquote">
+<p><em>The Australian National Electricity Market (NEM) is facing challenges due to the increasing integration of distributed energy resources, particularly rooftop solar generation. These energy sources introduce complexity in balancing supply and demand, a task managed by the Australian Energy Market Operator (AEMO). This report explores the impact of the “Duck Curve” on electricity demand patterns and the “invisible” role of rooftop solar in the market.</em></p>
+</blockquote>
+<section id="problem-description" class="level2"><h2 class="anchored" data-anchor-id="problem-description">Problem Description</h2>
+<p>The integration of distributed solar energy into the NEM is creating challenges for system operators, particularly with the growing penetration of rooftop solar systems. Many experts are discussing these issues, including <a href="https://www.linkedin.com/pulse/distributed-energy-system-balancing-need-policy-matt-rennie/">Matt Rennie from EY</a>, who highlights the “invisibility of distributed energy” as a growing concern for system operators. This phenomenal is commonly known as the “Duck Curve”. It represents the mismatch between energy demand and renewable energy supply, particularly solar energy, throughout the day. The ‘duck shape’ emerges as solar power generation increases in the middle of the day and sharply declines towards the evening, when electricity demand is highest. This curve highlights a challenge for grid operators who must balance this energy supply-demand gap to avoid potential outages or the need for expensive, non-renewable energy sources during peak demand.</p>
+</section><section id="data-description" class="level2"><h2 class="anchored" data-anchor-id="data-description">Data Description</h2>
+<p>The data used in this analysis is derived from the National Electricity Market (NEM) operated by the Australian Energy Market Operator (AEMO). The dataset includes hourly energy demand and supply metrics, focusing on solar energy generation, over a given period. The data helps visualise the duck curve by comparing the total demand with solar energy contributions throughout the day.</p>
+<p>Based on the official dataset description, the dataset includes the following key variables:</p>
+<div id="tbl-variable-desc" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-variable-desc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Variable description
+</figcaption><div aria-describedby="tbl-variable-desc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 20%">
+<col style="width: 48%">
+</colgroup>
+<thead><tr class="header">
+<th>Variables Name</th>
+<th>Data Types</th>
+<th>Mean</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>INTERVAL_DATETIME</td>
+<td>date</td>
+<td>Date time interval for operational demand value</td>
+</tr>
+<tr class="even">
+<td>REGIONID</td>
+<td>Varchar2(20)</td>
+<td>Region identifier</td>
+</tr>
+<tr class="odd">
+<td>OPERATIONAL_DEMAND</td>
+<td>number(10,0)</td>
+<td>Operational demand value</td>
+</tr>
+<tr class="even">
+<td>LASTCHANGED</td>
+<td>date</td>
+<td>Last date and time record changed</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As Table&nbsp;1 shows, the dataset includes information on operational demand, region identifiers, and the date and time of the last record change. This data is essential for understanding the dynamics of energy demand and supply in the NEM. However, since the Interval_Datetime variables is stored as character instead of date as stated in the official record shown above, we need to convert it into a date-time format and break it down for further analysis.</p>
+<p>Since AEMO tracked each day of a month in a separated csv file, we need to write a snippet of code to load and combine all the data into one dataset. The data was then cleaned and transformed to facilitate the analysis. The code used to do so is as follows:</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Step 1: List all the CSV files in the folder</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">folder_path</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data/Public_Actual_Demand_2024_June"</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">file_list_1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>path <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">folder_path</span>, full.names <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Step 2: Load and combine all CSV files into one dataset</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">actual_demand_june</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">rbind</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">file_list_1</span>, <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">file</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">file</span>, skip <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, n_max <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">240</span>, col_select <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>,<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>,<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>, col_name <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">actual_demand_june</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">actual_demand_june</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rename</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    REGIONID <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">X5</span>,</span>
+<span>    INTERVAL_DATETIME <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">X6</span>,</span>
+<span>    OPERATIONAL_DEMAND <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">X7</span>,</span>
+<span>    OPERATIONAL_DEMAND_ADJUSTMENT <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">X8</span>,</span>
+<span>    WDR_ESTIMATE <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">X9</span>,</span>
+<span>    LASTCHANGED <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">X10</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Step 3: Clean the data</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">actual_demand_june</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">actual_demand_june</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    DATE <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">INTERVAL_DATETIME</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>    TIME <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_extract</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">INTERVAL_DATETIME</span>, pattern <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"\\d{2}:\\d{2}:\\d{2}"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>    REGIONID <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">REGIONID</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>    OPERATIONAL_DEMAND <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">OPERATIONAL_DEMAND</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>    OPERATIONAL_DEMAND_ADJUSTMENT <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">OPERATIONAL_DEMAND_ADJUSTMENT</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>    WDR_ESTIMATE <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">WDR_ESTIMATE</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">actual_demand_june</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">actual_demand_june</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>TIME <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">hms</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">TIME</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</details>
+</div>
+</section><section id="analysis" class="level2"><h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<p>In this section, we will explore the Duck Curve by analysing the solar energy contribution throughout the day in comparison with total electricity demand. We will use visualizations to depict how the energy demand shifts across hours of the day and how this contributes to the ‘duck shape.’</p>
+<section id="introduction" class="level3"><h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>However, before we dive deeply into the rabbit hole, let’s take a moment to understand the context of how the energy market works and what magic is performed behind the curtain.</p>
+<section id="demand-and-supply-in-the-energy-market" class="level4"><h4 class="anchored" data-anchor-id="demand-and-supply-in-the-energy-market">Demand and supply in the energy market</h4>
+<p>The most basic yet important concept in the energy market is the balance between supply and demand. The electricity system operator must ensure that the amount of electricity generated matches the amount consumed at all time. In Australia, this is maintained and operated by the Australian Energy Market Operator (AEMO). They achieve this through 2 key mechanisms:</p>
+<ul>
+<li><p><strong>Real-Time Market Operations:</strong> AEMO operates the electricity market in real-time. Generators submit bids to supply electricity, and the market determines the dispatch of power based on demand and supply conditions.</p></li>
+<li><p><strong>Frequency Control:</strong> AEMO closely monitors the electricity grid frequency, which is set at 50 Hz in Australia. This frequency is a key indicator of the balance between supply and demand. When demand exceeds supply, the frequency tends to drop below 50 Hz. Conversely, when supply exceeds demand, the frequency rises above 50 Hz. Maintaining the frequency at or very close to 50 Hz is critical for the stability of the grid.</p></li>
+</ul>
+<p>Thanks to the increasing popularity of rooftop solar panels, many households and businesses are now generating their own electricity. This distributed energy generation has a significant impact on the energy market, as it introduces a new source of supply that is not centrally controlled by AEMO. This is where the “invisible” player comes into play.</p>
+</section><section id="the-duck-curve" class="level4"><h4 class="anchored" data-anchor-id="the-duck-curve">The “Duck Curve”</h4>
+<p>The “Duck Curve” is a term used to describe the shape of the electricity demand curve over the course of a day <span class="citation" data-cites="jonesalbertus_2017_confronting">(Jones-Albertus 2017)</span>. The curve gets its name from its resemblance to a duck, with the belly of the duck representing the minimum demand during the day and the neck and head representing the peak demand in the evening.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-pos="H" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://alexnguyen.github.io/posts/welcome/index_files/figure-html/fig-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" data-fig-pos="H">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Mean operational demand for all regions in June 2024
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>We can see the change of this curve over the course of the day, with the lowest demand occurring in the early hours of the morning and the highest demand occurring in the evening. This pattern is consistent across all regions, with some variation in the magnitude of demand. It is also important to note that this pattern is repeated every day, regardless of the day of the week, as shown in Figure&nbsp;2 below:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-pos="H" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://alexnguyen.github.io/posts/welcome/index_files/figure-html/fig-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" data-fig-pos="H">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Heatmap of operational demand for all regions in June 2024
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Can you see the duck now?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="https://alexnguyen.github.io/posts/welcome/line_plot_demand_with_duck.png" class="img-fluid figure-img"></p>
+<figcaption>Quack quack, Here I am.</figcaption></figure>
+</div>
+</section><section id="key-results-and-method-rooftop-solar-generation-estimation" class="level4"><h4 class="anchored" data-anchor-id="key-results-and-method-rooftop-solar-generation-estimation">Key results and method: Rooftop solar generation estimation</h4>
+<p>Due to the fact that AEMO can not directly regulated and control the output of rooftop solar panels, they have to come up with a mechanism to manage the impact of distributed energy generation on the grid. Based on the dataset that AEMO provided to the public, which can be found <a href="https://nemweb.com.au/Reports/ARCHIVE/ROOFTOP_PV/ACTUAL/">here</a>, they have somehow managed to estimate the output of rooftop solar generation in each region. The data included:</p>
+<ul>
+<li><p><strong>REGIONID:</strong> The region where the data was collected.</p></li>
+<li><p><strong>INTERVAL_DATETIME:</strong> The date and time of the interval.</p></li>
+<li><p><strong>POWER:</strong> The estimated output of rooftop solar generation in megawatts (MW).</p></li>
+</ul>
+<p>The data was batch-loaded, transform from interval datetime into date, weekday and time in the day with the break of 30 minutes. The data dictionary was also published by AEMO can be found at this <a href="https://nemweb.com.au/Reports/Current/MMSDataModelReport/Electricity/MMS%20Data%20Model%20Report_files/MMS_97.htm#1">link</a>. Figure&nbsp;3 shows the mean rooftop solar generation for all regions in the NEM over the course of the day. The x-axis represents the time of day, while the y-axis represents the mean demand in red and the mean generation of solar in black. The plot is faceted by region, allowing us to see how rooftop solar generation varies across different parts of the NEM.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-3" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-pos="H" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://alexnguyen.github.io/posts/welcome/index_files/figure-html/fig-3-1.png" class="quarto-figure quarto-figure-center figure-img" style="width:80.0%;height:80.0%" data-fig-pos="H">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Mean operational demand and rooftop solar generation for all regions in June 2024
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>We can see that despite of the fact that AEMO did not have a mechanism to directly track and manage the output of the rooftop solar generator, their model did performed quite well and successfully capture the impact of these distributed energy resources on the grid.</p>
+</section></section></section><section id="conclusion" class="level2"><h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>In conclusion, the “Duck Curve” and the “invisible” role of rooftop solar generation are two key factors shaping the future of the Australian energy market. This provide an opportunity for the energy market to evolve and adapt to the changing landscape of distributed energy resources. By understanding these dynamics and developing innovative solutions, we can ensure a reliable and sustainable energy future for all Australians.</p>
+</section><section id="references" class="level2">
+
+
+
+</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-jonesalbertus_2017_confronting" class="csl-entry">
+Jones-Albertus, Becca. 2017. <span>“Confronting the Duck Curve: How to Address over-Generation of Solar Energy.”</span> Energy.gov. <a href="https://www.energy.gov/eere/articles/confronting-duck-curve-how-address-over-generation-solar-energy">https://www.energy.gov/eere/articles/confronting-duck-curve-how-address-over-generation-solar-energy</a>.
+</div>
+</div></section></div> ]]></description>
+  <category>news</category>
+  <guid>https://alexnguyen.github.io/posts/welcome/</guid>
+  <pubDate>Sun, 29 Sep 2024 14:00:00 GMT</pubDate>
+  <media:content url="https://alexnguyen.github.io/posts/welcome/duck-resized.png" medium="image" type="image/png" height="96" width="144"/>
+</item>
+</channel>
+</rss>
