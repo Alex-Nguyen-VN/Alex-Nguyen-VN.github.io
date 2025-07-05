@@ -1,33 +1,509 @@
 ---
+title: "Alex Nguyen - Data Scientist & Business Analyst"
+subtitle: "Transforming Data into Actionable Insights"
 format: html
 ---
 
 <style>
   body {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%), url("assets/img/black-white-landscape-with-fog.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  padding-top: 0px;
-}
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 100%), url("assets/img/black-white-landscape-with-fog.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding-top: 0px;
+  }
+  
+  .hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(100, 161, 157, 0.1), rgba(116, 100, 161, 0.1));
+    z-index: 1;
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 1s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #64a19d, #7464a1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: slideInLeft 1s ease-out 0.3s both;
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .hero-subtitle {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    font-weight: 300;
+    animation: slideInRight 1s ease-out 0.6s both;
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .hero-description {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    margin-bottom: 3rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    animation: fadeIn 1s ease-out 0.9s both;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease-out 1.2s both;
+  }
+  
+  .btn-hero {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .btn-hero:hover::before {
+    left: 100%;
+  }
+  
+  .btn-primary-hero {
+    background: linear-gradient(45deg, #64a19d, #7464a1);
+    color: white;
+    border-color: #64a19d;
+  }
+  
+  .btn-primary-hero:hover {
+    background: linear-gradient(45deg, #50817e, #5a4d7d);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(100, 161, 157, 0.3);
+  }
+  
+  .btn-outline-hero {
+    background: transparent;
+    color: white;
+    border-color: white;
+  }
+  
+  .btn-outline-hero:hover {
+    background: white;
+    color: #333;
+    transform: translateY(-2px);
+  }
+  
+  .features-section {
+    padding: 5rem 0;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    position: relative;
+  }
+  
+  .features-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.95));
+  }
+  
+  .feature-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 1rem 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid #64a19d;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(100, 161, 157, 0.05), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  
+  .feature-card:hover::before {
+    transform: translateX(100%);
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  }
+  
+  .feature-icon {
+    font-size: 2.5rem;
+    color: #64a19d;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+  
+  .feature-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .feature-description {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .stats-section {
+    background: linear-gradient(135deg, #64a19d, #7464a1);
+    color: white;
+    padding: 3rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .stats-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  .stat-item {
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .stat-number {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, #ffffff, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .stat-label {
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+  
+  /* Enhanced Responsive Design */
+  @media (max-width: 768px) {
+    .hero-content {
+      padding: 1rem;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .btn-hero {
+      width: 100%;
+      max-width: 300px;
+    }
+    
+    .features-section {
+      padding: 3rem 0;
+    }
+    
+    .feature-card {
+      margin: 0.5rem 0;
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .hero-section {
+      min-height: 90vh;
+    }
+    
+    .hero-title {
+      font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+    
+    .hero-description {
+      font-size: 0.95rem;
+    }
+  }
+  
+  /* Loading States */
+  .loading {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  
+  /* Accessibility Improvements */
+  .btn-hero:focus {
+    outline: 2px solid #64a19d;
+    outline-offset: 2px;
+  }
+  
+  .feature-card:focus-within {
+    outline: 2px solid #64a19d;
+    outline-offset: 2px;
+  }
+  
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-content,
+    .hero-title,
+    .hero-subtitle,
+    .hero-description,
+    .cta-buttons {
+      animation: none;
+    }
+    
+    .btn-hero::before {
+      display: none;
+    }
+    
+    .feature-card::before {
+      display: none;
+    }
+  }
 </style>
 
-
 ```{=html}
-<body id="page-top">
-    <header class="masthead">
-        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-            <div class="d-flex justify-content-center">
-                <div class="text-center">
-                    <h1 class="mx-auto my-0 text-uppercase">Welcome</h1>
-                    <h2 class="text-white-50 mx-auto mt-2 mb-5">This is my personal journey into the world of data analysis. Let's enjoy the journey together.</h2>
-                    <a class="btn btn-primary" href="posts/index.html">Dive in!</a>
+<div class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">Alex Nguyen</h1>
+        <h2 class="hero-subtitle">Data Scientist & Business Analyst</h2>
+        <p class="hero-description">
+            Passionate about transforming complex data into actionable insights. 
+            Specializing in energy market analysis, predictive modeling, and business intelligence solutions. 
+            Currently pursuing a Master of Business Analytics at Monash University.
+        </p>
+        <div class="cta-buttons">
+            <a href="/about.html" class="btn btn-hero btn-primary-hero">
+                <i class="fas fa-user me-2"></i>Learn More About Me
+            </a>
+            <a href="/posts/index.html" class="btn btn-hero btn-outline-hero">
+                <i class="fas fa-blog me-2"></i>View My Blog
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="features-section">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-4 fw-bold mb-3">What I Do</h2>
+                <p class="lead text-muted">Transforming data challenges into business opportunities</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Data Analysis</h3>
+                    <p class="feature-description">
+                        Comprehensive data analysis using R, Python, and SQL. 
+                        From exploratory data analysis to advanced statistical modeling.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="feature-title">Machine Learning</h3>
+                    <p class="feature-description">
+                        Building predictive models and implementing machine learning solutions 
+                        to solve complex business problems.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="feature-title">Business Intelligence</h3>
+                    <p class="feature-description">
+                        Creating insightful dashboards and reports that drive 
+                        data-informed decision making.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3 class="feature-title">Energy Analytics</h3>
+                    <p class="feature-description">
+                        Specialized expertise in energy market analysis, 
+                        including demand forecasting and renewable energy integration.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 class="feature-title">Project Management</h3>
+                    <p class="feature-description">
+                        Leading data science projects from conception to implementation 
+                        with strong stakeholder communication.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="feature-title">Continuous Learning</h3>
+                    <p class="feature-description">
+                        Staying current with the latest data science trends and technologies 
+                        through ongoing education and research.
+                    </p>
                 </div>
             </div>
         </div>
-    </header>
-</body>
-```
+    </div>
+</div>
 
+<div class="stats-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-6">
+                <div class="stat-item">
+                    <div class="stat-number">4+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Programming Languages</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<main id="main-content" tabindex="-1"></main>

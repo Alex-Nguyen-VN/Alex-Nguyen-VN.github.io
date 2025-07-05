@@ -1,16 +1,224 @@
-<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="mainNav">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="/index.html">A Clumsy Data Analyst Blog</a>
+        <a class="navbar-brand fw-bold" href="/index.html">
+            <i class="fas fa-chart-line me-2"></i>Alex Nguyen
+        </a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars"></i>
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="/posts/index.html">Post</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/index.html">
+                        <i class="fas fa-home me-1"></i><span class="nav-text">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about.html">
+                        <i class="fas fa-user me-1"></i><span class="nav-text">About</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/posts/index.html">
+                        <i class="fas fa-blog me-1"></i><span class="nav-text">Blog</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/projects.html">
+                        <i class="fas fa-project-diagram me-1"></i><span class="nav-text">Projects</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/skills.html">
+                        <i class="fas fa-tools me-1"></i><span class="nav-text">Skills</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-external-link-alt me-1"></i><span class="nav-text">Connect</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="https://github.com/Alex-Nguyen-VN" target="_blank" rel="noopener">
+                            <i class="fab fa-github me-2"></i>GitHub
+                        </a></li>
+                        <li><a class="dropdown-item" href="https://www.linkedin.com/in/nguyen-thanh-cuong-20849552/" target="_blank" rel="noopener">
+                            <i class="fab fa-linkedin me-2"></i>LinkedIn
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="mailto:thanhcuong10091992@gmail.com">
+                            <i class="fas fa-envelope me-2"></i>Email
+                        </a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
+
+<style>
+/* Enhanced Navigation Styles */
+#mainNav {
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+#mainNav.navbar-shrink {
+    background: rgba(0, 0, 0, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+#mainNav .navbar-brand {
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+#mainNav .navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+#mainNav .nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 0.75rem 1rem !important;
+}
+
+#mainNav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #64a19d;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+#mainNav .nav-link:hover::after,
+#mainNav .nav-link.active::after {
+    width: 80%;
+}
+
+#mainNav .nav-link:hover {
+    color: #64a19d !important;
+    transform: translateY(-2px);
+}
+
+#mainNav .dropdown-menu {
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-top: 0.5rem;
+}
+
+#mainNav .dropdown-item {
+    color: white;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    margin: 0.25rem;
+}
+
+#mainNav .dropdown-item:hover {
+    background: rgba(100, 161, 157, 0.2);
+    color: #64a19d;
+    transform: translateX(5px);
+}
+
+#mainNav .navbar-toggler {
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+#mainNav .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem rgba(100, 161, 157, 0.5);
+}
+
+#mainNav .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Mobile Navigation Enhancements */
+@media (max-width: 991.98px) {
+    #mainNav .navbar-collapse {
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        margin-top: 1rem;
+        padding: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    #mainNav .nav-link {
+        padding: 1rem !important;
+        border-radius: 5px;
+        margin: 0.25rem 0;
+    }
+    
+    #mainNav .nav-link:hover {
+        background: rgba(100, 161, 157, 0.1);
+    }
+    
+    #mainNav .nav-text {
+        display: inline-block;
+    }
+    
+    #mainNav .dropdown-menu {
+        background: transparent;
+        border: none;
+        margin-top: 0;
+        padding-left: 1rem;
+    }
+    
+    #mainNav .dropdown-item {
+        background: rgba(100, 161, 157, 0.1);
+        margin: 0.25rem 0;
+    }
+}
+
+/* Loading Animation */
+.navbar-brand i {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Accessibility Improvements */
+.nav-link:focus {
+    outline: 2px solid #64a19d;
+    outline-offset: 2px;
+}
+
+.dropdown-item:focus {
+    outline: 2px solid #64a19d;
+    outline-offset: 1px;
+}
+
+/* Skip Link for Accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #64a19d;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 5px;
+    z-index: 9999;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+</style>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>

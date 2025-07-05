@@ -4,9 +4,28 @@ project:
 
 website:
   page-navigation: true
-  title: "Alex Nguyen"
+  title: "Alex Nguyen - Data Scientist & Business Analyst"
   site-url: "https://alexnguyen.github.io/"
   open-graph: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: About
+      - href: posts/index.qmd
+        text: Blog
+      - href: projects.qmd
+        text: Projects
+      - href: skills.qmd
+        text: Skills
+    right:
+      - icon: github
+        href: https://github.com/Alex-Nguyen-VN
+      - icon: linkedin
+        href: https://www.linkedin.com/in/nguyen-thanh-cuong-20849552/
+      - icon: envelope
+        href: mailto:thanhcuong10091992@gmail.com
 
 lang: en
 
@@ -19,14 +38,35 @@ format:
     footnotes-hover: true
     toc: true
     code-link: true
+    code-fold: true
+    code-tools: true
     googlefonts:
       - Varela+Round
       - Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i
+      - Inter:300,400,500,600,700
     css: /css/styles.css
     include-in-header:
       - includes/header.html
       - text: |
           <script type="text/javascript" src="/js/scripts.js"></script>
+          <meta name="description" content="Alex Nguyen - Data Scientist & Business Analyst Portfolio. Exploring data insights, analytics projects, and business intelligence solutions.">
+          <meta name="keywords" content="data science, data analysis, business analytics, R, Python, SQL, machine learning, portfolio, energy analytics, predictive modeling">
+          <meta name="author" content="Alex Nguyen">
+          <meta name="robots" content="index, follow">
+          <meta property="og:title" content="Alex Nguyen - Data Scientist & Business Analyst">
+          <meta property="og:description" content="Data Scientist & Business Analyst passionate about transforming complex data into actionable insights.">
+          <meta property="og:type" content="website">
+          <meta property="og:url" content="https://alexnguyen.github.io/">
+          <meta property="og:image" content="https://alexnguyen.github.io/profile.jpg">
+          <meta name="twitter:card" content="summary_large_image">
+          <meta name="twitter:title" content="Alex Nguyen - Data Scientist & Business Analyst">
+          <meta name="twitter:description" content="Data Scientist & Business Analyst passionate about transforming complex data into actionable insights.">
+          <meta name="twitter:image" content="https://alexnguyen.github.io/profile.jpg">
+          <link rel="canonical" href="https://alexnguyen.github.io/">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta name="theme-color" content="#64a19d">
+          <link rel="apple-touch-icon" href="/assets/favicon.ico">
+          <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
     include-after-body: includes/footer.html
 
 editor: visual

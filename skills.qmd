@@ -1,0 +1,472 @@
+---
+title: "Skills & Expertise"
+subtitle: "Technical Skills & Professional Competencies"
+format: html
+---
+
+<style>
+  .skills-hero {
+    background: linear-gradient(135deg, #64a19d, #7464a1);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .skills-section {
+    padding: 4rem 0;
+  }
+  
+  .skill-category {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #64a19d;
+  }
+  
+  .category-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+  }
+  
+  .category-icon {
+    font-size: 2rem;
+    color: #64a19d;
+    margin-right: 1rem;
+  }
+  
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .skill-item {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1.5rem;
+    border: 1px solid #e9ecef;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .skill-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .skill-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .skill-level {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .skill-level-text {
+    font-size: 0.9rem;
+    color: #64a19d;
+    font-weight: 500;
+    margin-right: 0.5rem;
+  }
+  
+  .skill-bar {
+    flex: 1;
+    height: 6px;
+    background: #e9ecef;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  
+  .skill-progress {
+    height: 100%;
+    background: linear-gradient(45deg, #64a19d, #7464a1);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+  }
+  
+  .skill-description {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+  }
+  
+  .certifications-section {
+    background: #f8f9fa;
+    padding: 4rem 0;
+  }
+  
+  .certification-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    border-left: 3px solid #64a19d;
+  }
+  
+  .certification-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .certification-issuer {
+    color: #64a19d;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  
+  .certification-date {
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .tools-section {
+    padding: 4rem 0;
+  }
+  
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .tool-item {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .tool-item:hover {
+    transform: translateY(-2px);
+  }
+  
+  .tool-icon {
+    font-size: 2rem;
+    color: #64a19d;
+    margin-bottom: 0.5rem;
+  }
+  
+  .tool-name {
+    font-weight: 500;
+    color: #333;
+  }
+</style>
+
+```{=html}
+<div class="skills-hero">
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-3">Skills & Expertise</h1>
+        <p class="lead">Technical skills and professional competencies in data science and analytics</p>
+    </div>
+</div>
+
+<div class="container skills-section">
+    <!-- Programming Languages -->
+    <div class="skill-category">
+        <h2 class="category-title">
+            <i class="fas fa-code category-icon"></i>
+            Programming Languages
+        </h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <div class="skill-name">R</div>
+                <div class="skill-level">
+                    <span class="skill-level-text">Advanced</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-description">
+                    Tidyverse, ggplot2, Shiny, R Markdown, statistical modeling, data manipulation
+                </div>
+            </div>
+            
+            <div class="skill-item">
+                <div class="skill-name">Python</div>
+                <div class="skill-level">
+                    <span class="skill-level-text">Intermediate</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-description">
+                    Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn, Jupyter notebooks
+                </div>
+            </div>
+            
+            <div class="skill-item">
+                <div class="skill-name">SQL</div>
+                <div class="skill-level">
+                    <span class="skill-level-text">Advanced</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-description">
+                    Complex queries, data modeling, performance optimization, stored procedures
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Data Analysis & Visualization -->
+    <div class="skill-category">
+        <h2 class="category-title">
+            <i class="fas fa-chart-bar category-icon"></i>
+            Data Analysis & Visualization
+        </h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <div class="skill-name">Statistical Analysis</div>
+                <div class="skill-level">
+                    <span class="skill-level-text">Advanced</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 88%"></div>
+                    </div>
+                </div>
+                <div class="skill-description">
+                    Hypothesis testing, regression analysis, time series analysis, experimental design
+                </div>
+            </div>
+            
+            <div class="skill-item">
+                <div class="skill-name">Data Visualization</div>
+                <div class="skill-level">
+                    <span class="skill-level-text">Advanced</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-description">
+                    ggplot2, Tableau, Power BI, interactive dashboards, storytelling with data
+                </div>
+            </div>
+            
+            <div class="skill-item">
+                <div class="skill-name">Exploratory Data Analysis</div>
+                <div class="skill-level">
+                    <span class="skill-level-text">Advanced</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-description">
+                    Data profiling, outlier detection, correlation analysis, data quality assessment
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Machine Learning -->
+    <div class="skill-category">
+        <h2 class="category-title">
+            <i class="fas fa-brain category-icon"></i>
+            Machine Learning & AI
+        </h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <div class="skill-name">Predictive Modeling</div>
+                <div class="skill-level">
+                    <span class="skill-level-text">Intermediate</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="skill-description">
+                    Linear/Logistic regression, decision trees, random forests, model validation
+                </div>
+            </div>
+            
+            <div class="skill-item">
+                <div class="skill-name">Clustering & Segmentation</div>
+                <div class="skill-level">
+                    <span class="skill-level-text">Intermediate</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-description">
+                    K-means, hierarchical clustering, customer segmentation, pattern recognition
+                </div>
+            </div>
+            
+            <div class="skill-item">
+                <div class="skill-name">Time Series Analysis</div>
+                <div class="skill-level">
+                    <span class="skill-level-text">Advanced</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-description">
+                    ARIMA, seasonal decomposition, forecasting, trend analysis
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Business Intelligence -->
+    <div class="skill-category">
+        <h2 class="category-title">
+            <i class="fas fa-lightbulb category-icon"></i>
+            Business Intelligence & Tools
+        </h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <div class="skill-name">Power BI</div>
+                <div class="skill-level">
+                    <span class="skill-level-text">Intermediate</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-description">
+                    DAX, data modeling, dashboard creation, report automation
+                </div>
+            </div>
+            
+            <div class="skill-item">
+                <div class="skill-name">Tableau</div>
+                <div class="skill-level">
+                    <span class="skill-level-text">Intermediate</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="skill-description">
+                    Data visualization, interactive dashboards, calculated fields, parameters
+                </div>
+            </div>
+            
+            <div class="skill-item">
+                <div class="skill-name">Excel Advanced</div>
+                <div class="skill-level">
+                    <span class="skill-level-text">Advanced</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-description">
+                    VBA, pivot tables, advanced formulas, data analysis tools
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="certifications-section">
+    <div class="container">
+        <h2 class="text-center mb-5">
+            <i class="fas fa-certificate me-2"></i>
+            Certifications & Achievements
+        </h2>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="certification-card">
+                    <div class="certification-title">Kellogg-Morgan Sustainable Financing Contest 2024</div>
+                    <div class="certification-issuer">Finalist</div>
+                    <div class="certification-date">2024</div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="certification-card">
+                    <div class="certification-title">Master of Business Analytics</div>
+                    <div class="certification-issuer">Monash University</div>
+                    <div class="certification-date">Expected 2026</div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="certification-card">
+                    <div class="certification-title">Bachelor of Business Administration</div>
+                    <div class="certification-issuer">National Economic University</div>
+                    <div class="certification-date">2010-2014</div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="certification-card">
+                    <div class="certification-title">Data Analysis Professional</div>
+                    <div class="certification-issuer">Trade Remedies Authority of Vietnam</div>
+                    <div class="certification-date">2019-2023</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container tools-section">
+    <h2 class="text-center mb-5">
+        <i class="fas fa-tools me-2"></i>
+        Tools & Technologies
+    </h2>
+    
+    <div class="tool-grid">
+        <div class="tool-item">
+            <div class="tool-icon"><i class="fab fa-r-project"></i></div>
+            <div class="tool-name">R Studio</div>
+        </div>
+        
+        <div class="tool-item">
+            <div class="tool-icon"><i class="fab fa-python"></i></div>
+            <div class="tool-name">Python</div>
+        </div>
+        
+        <div class="tool-item">
+            <div class="tool-icon"><i class="fas fa-database"></i></div>
+            <div class="tool-name">SQL Server</div>
+        </div>
+        
+        <div class="tool-item">
+            <div class="tool-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="tool-name">Power BI</div>
+        </div>
+        
+        <div class="tool-item">
+            <div class="tool-icon"><i class="fas fa-chart-bar"></i></div>
+            <div class="tool-name">Tableau</div>
+        </div>
+        
+        <div class="tool-item">
+            <div class="tool-icon"><i class="fas fa-file-excel"></i></div>
+            <div class="tool-name">Excel</div>
+        </div>
+        
+        <div class="tool-item">
+            <div class="tool-icon"><i class="fab fa-github"></i></div>
+            <div class="tool-name">GitHub</div>
+        </div>
+        
+        <div class="tool-item">
+            <div class="tool-icon"><i class="fas fa-code"></i></div>
+            <div class="tool-name">VS Code</div>
+        </div>
+        
+        <div class="tool-item">
+            <div class="tool-icon"><i class="fas fa-cloud"></i></div>
+            <div class="tool-name">Jupyter</div>
+        </div>
+        
+        <div class="tool-item">
+            <div class="tool-icon"><i class="fas fa-chart-pie"></i></div>
+            <div class="tool-name">SPSS</div>
+        </div>
+    </div>
+</div>

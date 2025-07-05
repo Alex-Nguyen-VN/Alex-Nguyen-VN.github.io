@@ -1,5 +1,6 @@
 ---
-title: "Thanh Cuong Nguyen (Alex)"
+title: "About Me"
+subtitle: "Data Scientist & Business Analyst"
 image: profile.jpg
 about:
   template: trestles
@@ -14,41 +15,363 @@ format:
   html:
     css: css/styles.css
 ---
+
 <style>
-  body {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%), url("assets/img/black-white-landscape-with-fog.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  padding-top: 0px;
-}
+  .about-hero {
+    background: linear-gradient(135deg, #64a19d, #7464a1);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .about-content {
+    padding: 4rem 0;
+  }
+  
+  .about-section {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #64a19d;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+  }
+  
+  .section-icon {
+    font-size: 2rem;
+    color: #64a19d;
+    margin-right: 1rem;
+  }
+  
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #64a19d;
+  }
+  
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+  }
+  
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -0.5rem;
+    top: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    background: #64a19d;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px #64a19d;
+  }
+  
+  .timeline-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .timeline-subtitle {
+    color: #64a19d;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  
+  .timeline-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .timeline-description {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .skills-highlight {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .skill-badge {
+    background: #f8f9fa;
+    color: #64a19d;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid #e9ecef;
+  }
+  
+  .contact-section {
+    background: #f8f9fa;
+    padding: 4rem 0;
+  }
+  
+  .contact-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .contact-card:hover {
+    transform: translateY(-3px);
+  }
+  
+  .contact-icon {
+    font-size: 2rem;
+    color: #64a19d;
+    margin-bottom: 1rem;
+  }
+  
+  .contact-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .contact-info {
+    color: #666;
+  }
+  
+  .contact-link {
+    color: #64a19d;
+    text-decoration: none;
+  }
+  
+  .contact-link:hover {
+    color: #50817e;
+  }
 </style>
 
-
 ```{=html}
-<!-- About Content -->
-<div class="about-me">
-  <h2>About Me</h2>
-  <p>
-    I am a dynamic and results-oriented professional pursuing a career in Business Analytics. With a strong foundation in data analysis, project management, and strategic planning gained from diverse roles, I am eager to leverage my skills to drive business decisions and strategies.
-  </p>
+<div class="about-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-4 text-center">
+                <img src="/profile.jpg" alt="Alex Nguyen" class="img-fluid rounded-circle mb-3" style="max-width: 200px; border: 4px solid white;">
+            </div>
+            <div class="col-md-8">
+                <h1 class="display-4 fw-bold mb-3">Alex Nguyen</h1>
+                <p class="lead mb-3">Data Scientist & Business Analyst</p>
+                <p class="mb-4">
+                    Passionate about transforming complex data into actionable insights. 
+                    With over 4 years of experience in data analysis and business intelligence, 
+                    I specialize in energy market analysis, predictive modeling, and strategic business solutions.
+                </p>
+                <div class="d-flex gap-3 justify-content-center justify-content-md-start">
+                    <a href="https://github.com/Alex-Nguyen-VN" class="btn btn-outline-light" target="_blank">
+                        <i class="fab fa-github me-2"></i>GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/nguyen-thanh-cuong-20849552/" class="btn btn-outline-light" target="_blank">
+                        <i class="fab fa-linkedin me-2"></i>LinkedIn
+                    </a>
+                    <a href="mailto:thanhcuong10091992@gmail.com" class="btn btn-outline-light">
+                        <i class="fas fa-envelope me-2"></i>Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-  <!-- Education Section -->
-  <h3>Education</h3>
-  <p><strong>Monash University</strong> | Melbourne, Australia<br>
-  Master of Business Analytics | Expected 2026</p>
+<div class="container about-content">
+    <!-- Professional Summary -->
+    <div class="about-section">
+        <h2 class="section-title">
+            <i class="fas fa-user section-icon"></i>
+            Professional Summary
+        </h2>
+        <p class="lead">
+            I am a dynamic and results-oriented professional pursuing a career in Business Analytics. 
+            With a strong foundation in data analysis, project management, and strategic planning gained 
+            from diverse roles, I am eager to leverage my skills to drive business decisions and strategies.
+        </p>
+        <p>
+            My expertise spans across statistical analysis, machine learning, data visualization, and business intelligence. 
+            I have a particular interest in energy markets and renewable energy integration, having worked extensively 
+            with energy demand data and market analysis.
+        </p>
+        <div class="skills-highlight">
+            <span class="skill-badge">Data Analysis</span>
+            <span class="skill-badge">Statistical Modeling</span>
+            <span class="skill-badge">Machine Learning</span>
+            <span class="skill-badge">Business Intelligence</span>
+            <span class="skill-badge">Energy Analytics</span>
+            <span class="skill-badge">Project Management</span>
+        </div>
+    </div>
+    
+    <!-- Education -->
+    <div class="about-section">
+        <h2 class="section-title">
+            <i class="fas fa-graduation-cap section-icon"></i>
+            Education
+        </h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-title">Master of Business Analytics</div>
+                <div class="timeline-subtitle">Monash University</div>
+                <div class="timeline-date">Melbourne, Australia | Expected 2026</div>
+                <div class="timeline-description">
+                    Currently pursuing advanced studies in business analytics, focusing on data science, 
+                    machine learning, and business intelligence applications.
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-title">Bachelor of Business Administration</div>
+                <div class="timeline-subtitle">National Economic University</div>
+                <div class="timeline-date">Hanoi, Vietnam | 2010-2014</div>
+                <div class="timeline-description">
+                    Comprehensive business education with focus on economics, management, and strategic planning.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Professional Experience -->
+    <div class="about-section">
+        <h2 class="section-title">
+            <i class="fas fa-briefcase section-icon"></i>
+            Professional Experience
+        </h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-title">Data Analyst</div>
+                <div class="timeline-subtitle">Trade Remedies Authority of Vietnam</div>
+                <div class="timeline-date">January 2019 - January 2023</div>
+                <div class="timeline-description">
+                    Led comprehensive data analysis projects for trade policy development and market research. 
+                    Developed statistical models for market impact assessment and created interactive dashboards 
+                    for stakeholder reporting. Managed large datasets and implemented data quality assurance protocols.
+                </div>
+                <div class="skills-highlight">
+                    <span class="skill-badge">R</span>
+                    <span class="skill-badge">SQL</span>
+                    <span class="skill-badge">Excel</span>
+                    <span class="skill-badge">Statistical Analysis</span>
+                    <span class="skill-badge">Data Visualization</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Key Achievements -->
+    <div class="about-section">
+        <h2 class="section-title">
+            <i class="fas fa-trophy section-icon"></i>
+            Key Achievements
+        </h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-medal fa-2x text-warning mb-3"></i>
+                        <h5 class="card-title">Kellogg-Morgan Sustainable Financing Contest 2024</h5>
+                        <p class="card-text text-muted">Finalist</p>
+                        <p class="card-text small">
+                            Recognized for innovative approach to sustainable financing solutions 
+                            in the energy sector.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-chart-line fa-2x text-success mb-3"></i>
+                        <h5 class="card-title">Energy Market Analysis</h5>
+                        <p class="card-text text-muted">Specialized Expertise</p>
+                        <p class="card-text small">
+                            Developed comprehensive analysis of energy demand patterns 
+                            and renewable energy integration challenges.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-  <p><strong>National Economic University</strong> | Hanoi, Viet Nam<br>
-  Bachelor of Business Administration | 2010-2014</p>
-
-  <!-- Experience Section -->
-  <h3>Experience</h3>
-  <p><strong>Data Analyst</strong> | Trade Remedies Authority of Viet Nam | Jan 2019 - Jan 2023</p>
-
-  <!-- Achievements Section -->
-  <h3>Achievements</h3>
-  <p>Kellogg-Morgan Sustainable Financing Contest 2024 | Finalist</p>
-  </div>
+<div class="contact-section">
+    <div class="container">
+        <h2 class="text-center mb-5">
+            <i class="fas fa-address-book me-2"></i>
+            Get In Touch
+        </h2>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-title">Email</div>
+                    <div class="contact-info">
+                        <a href="mailto:thanhcuong10091992@gmail.com" class="contact-link">
+                            thanhcuong10091992@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div class="contact-title">LinkedIn</div>
+                    <div class="contact-info">
+                        <a href="https://www.linkedin.com/in/nguyen-thanh-cuong-20849552/" class="contact-link" target="_blank">
+                            Alex Nguyen
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div class="contact-title">GitHub</div>
+                    <div class="contact-info">
+                        <a href="https://github.com/Alex-Nguyen-VN" class="contact-link" target="_blank">
+                            Alex-Nguyen-VN
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 ```
